@@ -1,0 +1,1 @@
+Observable在创建的时候会生成一个OnSubscribe对象，Observable在被订阅的时候OnSubscribe.subscribe(subscriber),会调用OnSubscribe对象call(subscriber)的方法，参数就是订阅者subscriber，call方法负责发送消息给每一个订阅者。
