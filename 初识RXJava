@@ -7,5 +7,5 @@
 是这个新生成Observable，然后调用新的Observable的OnSubscribe对象的call方法，而这个call(subscriber)方法所做的工作不是发送消息
 而是调用Operator.call(subscriber)生成一个新的订阅者new subscriber 而new subscriber的onNext会做一些转换操作
 （调用原始的subscriber.onNext(transformer.call(t));），然后原始的OnSubscribe.call(new subscriber);
-
+transformer.call(t)就是调用转换Func的call方法进行数据转换。
 OnSubscribeFromIterable是OnSubscribe接口的具体实现call方法中会遍历数据一个个发送。
