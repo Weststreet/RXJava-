@@ -1,2 +1,11 @@
-Observable在创建的时候会生成一个OnSubscribe对象，Observable在被订阅的时候OnSubscribe.subscribe(subscriber)
+
+1.Observable在创建的时候会生成一个OnSubscribe对象，Observable在被订阅的时候（OnSubscribe.subscribe(subscriber)）
 ,会调用OnSubscribe对象call(subscriber)的方法，参数就是订阅者subscriber，call方法负责遍历所有数据发送消息给每一个订阅者。
+
+2.当Observable有一个对数据进行转换的过程的时候，整个订阅的流畅会发生一些变化，首先是Observable的创建，Observable在创建的时候会生成
+一个OnSubscribe对象，然后是转换操作，转换操作的大体过程：生成一个新的Observable以及OnSubscribe对象。此后订阅者所订阅的Observable
+是这个新生成Observable，然后调用新的Observable的OnSubscribe对象的call方法，而这个call(subscriber)方法所做的工作不是发送消息
+而是调用Operator.call(subscriber)生成一个新的订阅者new subscriber 而new subscriber的onNext会做一些转换操作
+（调用原始的subscriber.onNext(transformer.call(t));），然后原始的OnSubscribe.call(new subscriber);
+
+OnSubscribeFromIterable是OnSubscribe接口的具体实现call方法中会遍历数据一个个发送。
