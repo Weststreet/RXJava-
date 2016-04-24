@@ -9,3 +9,4 @@
 （调用原始的subscriber.onNext(transformer.call(t));），然后原始的OnSubscribe.call(new subscriber);
 transformer.call(t)就是调用转换Func的call方法进行数据转换。
 OnSubscribeFromIterable是OnSubscribe接口的具体实现call方法中会遍历数据一个个发送。
+3.just()，from()是立即执行的不是等到订阅才执行
